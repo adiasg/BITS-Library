@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}Index{% endblock %} {% block body %}
+
+<div class="w3-responsive">
+    <table class="w3-table-all">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Title</th>
+        </tr>
+
+        {% for key in range(data.shape[0]) %}
+        <tr>
+            <td>{{data.iloc[key]['ID']}}</td>
+            <td>{{data.iloc[key]['Name']}}</td>
+            <td>{{data.iloc[key]['Title']}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+
+{% endblock %}
