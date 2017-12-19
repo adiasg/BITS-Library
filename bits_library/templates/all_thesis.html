@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}Index{% endblock %} {% block body %}
 
 <div class="w3-responsive">
-    <table class="w3-table-all">
+    <table class="w3-table w3-bordered">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -9,7 +9,7 @@
         </tr>
 
         {% for key in range(data.shape[0]) %}
-        <tr>
+        <tr class="{{ loop.cycle('w3-sand','w3-flat-clouds') }}">
             <td>{{data.iloc[key]['ID']}}</td>
             <td>{{data.iloc[key]['Name']}}</td>
             <td>{{data.iloc[key]['Title']}}</td>

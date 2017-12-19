@@ -1,27 +1,63 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     {% block head %}
     <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='w3.css')}}">
-    {% endblock %}
+    <meta name="theme-color" content="#1abc9c">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='w3.css')}}"> {% endblock %}
 </head>
 
 <body>
     {% block navbar %}
-    <div class="w3-top">
-        <div class="w3-bar w3-teal w3-text-white">
+    <header id="header">
+        <div id="navbar-bar" class="w3-top w3-bar w3-flat-turquoise w3-text-white">
             <a href="{{ url_for('serve_index') }}" class="w3-bar-item w3-mobile w3-left w3-button">Home</a>
             <a href="{{ url_for('serve_thesis_db') }}" class="w3-bar-item w3-mobile w3-left w3-button">Thesis-DB</a>
         </div>
+    </header>
+
+    <!--
+    <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+        <br>
+        <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+        <a href="{{ url_for('serve_index') }}" class="w3-bar-item w3-mobile w3-left w3-button">Home</a>
+        <a href="{{ url_for('serve_thesis_db') }}" class="w3-bar-item w3-mobile w3-left w3-button">Thesis-DB</a>
     </div>
 
-    <br><br>
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
 
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+
+    <div class="w3-teal w3-top">
+        <button class="w3-button w3-teal" onclick="w3_open()">☰</button>
+    </div>
+    <br><br>
+    -->
+
+    {% endblock %} {% block body %}{% endblock %} {% block scripts %}
+    <script type="text/javascript">
+        testExp = new RegExp('Android|webOS|iPhone|iPad|' +
+            'BlackBerry|Windows Phone|' +
+            'Opera Mini|IEMobile|Mobile',
+            'i');
+
+        if (testExp.test(navigator.userAgent))
+            document.getElementById("navbar-bar").classList.remove('w3-top');
+        else {
+            //document.getElementById("header").style.height = "40px";
+            document.getElementById("header").style.marginBottom = "39px";
+        }
+    </script>
     {% endblock %}
 
-    {% block body %}{% endblock %}
-
 </body>
+
 </html>
