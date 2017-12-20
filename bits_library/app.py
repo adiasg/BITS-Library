@@ -9,6 +9,6 @@ def serve_index():
 @app.route('/thesis_db')
 def serve_thesis_db():
     display_order = ['ID', 'Name']
-    return render_template('all_thesis.html', data=getEntries(), display_order=display_order)
+    return render_template('all_thesis.html', data=getThesisData(), display_order=display_order)
 
 app.run(host='0.0.0.0', port=5000, debug=False)

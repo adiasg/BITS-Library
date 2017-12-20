@@ -42,18 +42,17 @@
     <br><br>
     -->
 
-    {% endblock %} {% block body %}{% endblock %} {% block scripts %}
+    {% endblock %} {% block body %}{% endblock %} {% block script %}
     <script type="text/javascript">
-        testExp = new RegExp('Android|webOS|iPhone|iPad|' +
-            'BlackBerry|Windows Phone|' +
-            'Opera Mini|IEMobile|Mobile',
-            'i');
-
-        if (testExp.test(navigator.userAgent))
+        testExp = new RegExp(   'Android|webOS|iPhone|iPad|' +
+                                'BlackBerry|Windows Phone|' +
+                                'Opera Mini|IEMobile|Mobile',
+                                'i');
+        if (testExp.test(navigator.userAgent)) {
             document.getElementById("navbar-bar").classList.remove('w3-top');
+        }
         else {
-            //document.getElementById("header").style.height = "40px";
-            document.getElementById("header").style.marginBottom = "39px";
+            document.getElementById("header").style.marginBottom = "60px";
         }
     </script>
     {% endblock %}

@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block title %}Index{% endblock %} {% block body %}
 
+<!--
 <div class="w3-responsive">
-    <table class="w3-table w3-bordered">
+    <table class="w3-bordered">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -9,15 +10,54 @@
         </tr>
 
         {% for key in range(data.shape[0]) %}
-        <tr class="{{ loop.cycle('w3-sand','w3-flat-clouds') }}">
+        <tr class="{{ loop.cycle('w3-sand','w3-flat-clouds') }}" onclick="toggleThesisAccordion('thesisEntry{{key}}')">
             <td>{{data.iloc[key]['ID']}}</td>
             <td>{{data.iloc[key]['Name']}}</td>
             <td>{{data.iloc[key]['Title']}}</td>
         </tr>
+        <div id="thesisEntry{{key}}" class="w3-hide">
+            {{data.iloc[key]['Title']}}
+        </div>
         {% endfor %}
 
     </table>
 </div>
+-->
 
+<div class="w3-row">
+    <div class="w3-col s2 w3-padding">
+        <b>ID</b>
+    </div>
+    <div class="w3-col s3 w3-padding">
+        <b>Name</b>
+    </div>
+    <div class="w3-col s7 w3-padding">
+        <b>Title</b>
+    </div>
+</div>
 
-{% endblock %}
+{% for key in range(data.shape[0]) %}
+<div class="w3-border-cyan" id="thesisData{{key}}">
+    <div class="w3-row {{ loop.cycle('w3-sand','w3-flat-clouds') }}" id="thesisEntry{{key}}" onclick="toggleThesisAccordion('{{key}}')">
+        <div class="w3-col m2 w3-padding" style="width: 15%;">{{data.iloc[key]['ID']}}</div>
+        <div class="w3-col m3 w3-padding">{{data.iloc[key]['Name']}}</div>
+        <div class="w3-col m7 w3-padding">{{data.iloc[key]['Title']}}</div>
+    </div>
+    <div class="w3-container w3-padding w3-hide w3-animate-opacity" id="thesisSummary{{key}}">
+        <b>Summary:</b> {{data.iloc[key]['Summary']}}
+    </div>
+</div>
+{% endfor %}
+
+{% block script %} {{super()}}
+<script type="text/javascript">
+    function toggleThesisAccordion(key) {
+        var summary = document.getElementById('thesisSummary'+key);
+        var data = document.getElementById('thesisData'+key);
+        summary.classList.toggle("w3-show");
+        summary.classList.toggle("w3-hide");
+        data.classList.toggle("w3-border");
+
+    }
+</script>
+{% endblock %} {% endblock %}
