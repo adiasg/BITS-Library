@@ -38,7 +38,7 @@
 
 {% for key in range(data.shape[0]) %}
 <div class="w3-border-cyan" id="thesisData{{key}}">
-    <div class="w3-row {{ loop.cycle('w3-sand','w3-flat-clouds') }}" id="thesisEntry{{key}}" onclick="toggleThesisAccordion('{{key}}')">
+    <div class="w3-row {{ loop.cycle('w3-sand','w3-flat-clouds') }} w3-hover-cyan w3-hover-text-white" id="thesisEntry{{key}}" onclick="toggleThesisAccordion('{{key}}')">
         <div class="w3-col m2 w3-padding" style="width: 15%;">{{data.iloc[key]['ID']}}</div>
         <div class="w3-col m3 w3-padding">{{data.iloc[key]['Name']}}</div>
         <div class="w3-col m7 w3-padding">{{data.iloc[key]['Title']}}</div>
